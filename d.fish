@@ -5,10 +5,11 @@
 set _url 'https://www.teachermate.com.cn/wechat/wechat/guide/answer?openid=161067e64d98cbb23d3ceb2947f004a8'
 
 function _is_informed
-    if test (cat /tmp/gay_known) = "known"
+    # May not exist.
+    if test (cat /tmp/gay_known 2>&1) = "known"
         echo "LOG> skipped because informed."
         return 0
-        # ok
+        # ok.
     else
         echo "LOG> not informed. Launching cvlc."
         return 1
