@@ -3,7 +3,7 @@
 
 ## Hard PreRequirements
 
-Linux. curl. fish. awk. One mp3 player available on command line.
+Non-Windows OS. curl. fish. awk. One mp3 player available on command line.
 
 ## Usage
 
