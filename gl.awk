@@ -5,10 +5,15 @@ BEGIN {
 }
 
 {
+    if (match($0, "\"msg\":\"unauthorized\"") != 0) {
+        a = 999
+        exit 2
+    }
     if (match($0, "以下课堂包含开启的题目") != 0) {
         a = 1
-        exit 0
+        exit 1
     }
+
     if (match($0, "以下课堂暂未开启题目") != 0) {
         a = 1
     }

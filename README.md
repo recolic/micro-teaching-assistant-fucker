@@ -15,7 +15,7 @@ Linux. curl. fish. awk. One mp3 player available on command line.
 
 d.fish使用了gnome的notify-send，kde/其他de用户请根据自己的情况选择修改或删除气泡提醒。
 
-d.fish使用了cvlc来播放mp3，其他播放器用户请根据自己情况进行修改。请将电脑声音调大。
+d.fish默认使用mpg123/cvlc来播放mp3，其他播放器用户请根据自己情况进行修改。请将电脑声音调大。
 
 ## Tips
 

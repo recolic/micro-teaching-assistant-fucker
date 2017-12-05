@@ -2,7 +2,10 @@
 #Usage: fill _url with url of the page "学生->答题".
 #You must `echo "known" > /tmp/gay_known` to tell the script that you've been informed.
 
-set _url 'https://www.teachermate.com.cn/wechat/wechat/guide/answer?openid=161067e64d98cbb23d3ceb2947f004a8'
+set _url 'https://www.teachermate.com.cn/wechat/wechat/guide/answer?openid=0a26740fbf9429d1747f8bc8ff8bf1cb'
+
+set _audio_player "mpg123"
+#set _audio_player "cvlc --play-and-exit"
 
 function _is_informed
     # May not exist.
@@ -20,13 +23,13 @@ function _on_opened
     if _is_informed
         return 0
     end
-    cvlc --play-and-exit fire.mp3 > /dev/null 2>&1
+    eval $_audio_player fire.mp3 > /dev/null 2>&1
     notify-send "Warning: Question opened!" "Gay question opened!"
     echo "LOG> Detected!"
 end
 
 function _on_error
-    cvlc --play-and-exit error.mp3 > /dev/null 2>&1
+    eval $_audio_player error.mp3 > /dev/null 2>&1
     notify-send "Warning: Gay cookie invalid!" "Gay cookie expired!"
     echo "LOG> Error occurred! Maybe invalid cookie."
 end
