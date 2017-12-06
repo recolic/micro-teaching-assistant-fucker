@@ -1,6 +1,5 @@
 #!/usr/bin/fish
-#Usage: fill _url with url of the page "学生->答题".
-#You must `echo "known" > /tmp/gay_known` to tell the script that you've been informed.
+#Usage: fill _openid with openid from url of the page "学生->答题".
 
 set _openid '593712dbd06b5808e4d4a099e8ad4c8d'
 set _url "https://www.teachermate.com.cn/wechat/wechat/guide/answer?openid=$_openid"
