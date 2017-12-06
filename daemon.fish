@@ -51,7 +51,7 @@ BEGIN {
 
 function _all_answered
     # This function will return true if no question is opened, so OPENED check is unnecessary.
-    for class in (cat $_tmp_path | awk $awk_urlfilter | grep 'www.teachermate.com.cn' | sed 's/.*course_id=//g' | sed 's/&open_id=.*//g')
+    for class in (cat $_tmp_path | awk $awk_urlfilter | grep 'www.teachermate.com.cn' | sed 's/.*course\(_\|\)id=//g' | sed 's/&open\(_\|\)id=.*//g')
         curl --header "openId: $_openid" "https://www.teachermate.com.cn/wechat-api/v1/questions/$class" > $_tmp_path 2>/dev/null
         if not grep 'question' $_tmp_path
             echo "ERROR> curl wechat-api failed. $class $_openid"
