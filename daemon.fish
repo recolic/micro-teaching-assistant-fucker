@@ -1,7 +1,7 @@
 #!/usr/bin/fish
 #Usage: fill _openid with openid from url of the page "学生->答题".
 
-set _openid '593712dbd06b5808e4d4a099e8ad4c8d'
+set _openid 'e5e62ce051638593b201374a7a379bd5'
 set _url "https://www.teachermate.com.cn/wechat/wechat/guide/answer?openid=$_openid"
 
 set _audio_player "mpg123"
