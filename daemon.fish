@@ -1,8 +1,12 @@
 #!/usr/bin/fish
 #Usage: fill _openid with openid from url of the page "学生->答题".
 
-set _openid 'e5e62ce051638593b201374a7a379bd5'
+set _openid ''
 set _url "https://www.teachermate.com.cn/wechat/wechat/guide/answer?openid=$_openid"
+
+test "$_openid" = ""; and echo 'Give openid or url please:'; and read _openid
+set _openid (echo "$_openid" | sed 's/^.*openid=//g')
+echo "Set openid to $_openid"
 
 set _audio_player "mpg123"
 #set _audio_player "cvlc --play-and-exit"
