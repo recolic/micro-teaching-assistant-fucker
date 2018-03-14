@@ -21,7 +21,7 @@ while true
         continue
     end
     if not grep "<p class='success-tip'>暂无签到开启</p>" $tmpfl
-        mpg123 qiandao.mp3
+        mpg123 signin.mp3
     end
     sleep 5
 end
