@@ -16,7 +16,7 @@ set tmpfl (mktemp)
 while true
     curl "$_url" 2>/dev/null > $tmpfl
     if grep '{"data":\[\],"msg":"unauthorized"}' $tmpfl
-        mpg123 error.mp3
+        mpg123 badid.mp3
         sleep 5
         continue
     end
