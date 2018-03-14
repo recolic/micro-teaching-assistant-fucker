@@ -10,9 +10,7 @@ Non-Windows OS. curl. fish. awk. One mp3 player available on command line.
 
 打开微信 微助教 学生 答题/签到，在页面加载完成之前迅速按下右上角...，然后复制这个页面的url。
 
-编辑daemon-\*.fish，将url最后的openid填入set \_openid "YourIDHere"。(或者在运行时输入)
-
-./daemon-\*.fish 它会每5秒检查一次并判断是否需要答题。
+运行你想要的daemon-\*.fish 输入openid或含有openid的完整URL 它会每5秒检查一次并判断是否需要答题/签到。你也可以将openid直接写进daemon.fish。
 
 daemon-\*.fish使用了notify-send，其他用户请根据自己的情况选择修改或删除气泡提醒。
 
