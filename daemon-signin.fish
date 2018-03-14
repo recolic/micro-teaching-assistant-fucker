@@ -14,6 +14,7 @@ set _audio_player "mpg123"
 set tmpfl (mktemp)
 
 while true
+    date
     curl "$_url" 2>/dev/null > $tmpfl
     if grep '{"data":\[\],"msg":"unauthorized"}' $tmpfl
         mpg123 badid.mp3
