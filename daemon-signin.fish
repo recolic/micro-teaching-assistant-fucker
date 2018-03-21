@@ -13,22 +13,23 @@ set _audio_player "mpg123"
 
 set tmpfl (mktemp)
 
-function reconfirm
-    curl "$_url" 2>/dev/null | grep "<p class='success-tip'>暂无签到开启</p>"
-    and mpg123 signin.mp3
-end
-
 while true
+    sleep 5
     date
-    curl "$_url" 2>/dev/null > $tmpfl
+    curl -L "$_url" 2>/dev/null > $tmpfl
     if grep '{"data":\[\],"msg":"unauthorized"}' $tmpfl
         mpg123 badid.mp3
-        sleep 5
         continue
     end
-    if not grep "<p class='success-tip'>暂无签到开启</p>" $tmpfl
-        reconfirm
-        #mpg123 signin.mp3
+    if grep '签到中...' $tmpfl
+        echo 'got'
+        mpg123 signin.mp3
+        continue
     end
-    sleep 5
+    if grep "<p class='success-tip'>暂无签到开启</p>" $tmpfl
+        continue
+    end
+    if grep '你已签过到了' $tmpfl
+        continue
+    end
 end
