@@ -1,20 +1,10 @@
 #!/usr/bin/fish
 
-set _openid ''
-
-test "$_openid" = ""; and echo 'Give openid or url please:'; and read _openid
-set _openid (echo "$_openid" | sed 's/^.*openid=//g')
-echo "Set openid to $_openid"
-
-set _url "https://www.teachermate.com.cn/wechat/wechat/guide/signin?openid=$_openid"
-
-set _audio_player "mpg123"
-#set _audio_player "cvlc --play-and-exit"
-
 set tmpfl (mktemp)
+rm $tmpfl
 
 while true
-    sleep 5
+    test -f $tmpfl; and sleep 5
     date
     curl -L "$_url" 2>/dev/null > $tmpfl
     if grep '{"data":\[\],"msg":"unauthorized"}' $tmpfl
