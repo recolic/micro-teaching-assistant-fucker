@@ -12,7 +12,7 @@ Non-Windows OS. curl. bash. fish. awk. grep. One mp3 player available on command
 
 ## Configuration
 
-编辑config.fish，设置自动签到的经纬度和延时，设置你想使用的mp3播放器然后保存。
+编辑config.fish，设置自动签到的经纬度和延时，设置你想使用的mp3播放器，设置监视的时间间隔，然后保存。
 
 ## Usage
 
@@ -26,7 +26,7 @@ Non-Windows OS. curl. bash. fish. awk. grep. One mp3 player available on command
 
 - 监视答题
 
-运行`./daemon.sh ans`(或含有openid的url)，它会监视你的所有课堂是否有答题。注意，如果有多个课堂同时发起答题，其行为是未定义的。
+运行`./daemon.sh ans`并填写openid(或含有openid的url)，它会监视你的所有课堂是否有答题。注意，如果有多个课堂同时发起答题，其行为是未定义的。
 
 ## Tips
 
