@@ -1,7 +1,10 @@
 #!/usr/bin/fish
 #Usage: fill _openid with openid from url of the page "学生->答题".
 
-_url="https://www.teachermate.com.cn/wechat/wechat/guide/answer?openid=$_openid"
+test -z $_openid; and echo 'openid is unset.' ; and exit 1
+set _url "https://www.teachermate.com.cn/wechat/wechat/guide/answer?openid=$_openid"
+
+source ../config.fish
 
 function _check_and_warn
     if _all_answered
@@ -74,7 +77,7 @@ while true
     else if test "$_status" = "OPENED"
         _check_and_warn
     end
-    sleep 5
+    sleep $_monitor_interval
 end
 
 

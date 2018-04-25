@@ -6,9 +6,6 @@
 _openid=$(echo "$_openid" | sed 's/^.*openid=//g')
 echo "Set openid to $_openid"
 
-#_audio_player="mpg123"
-_audio_player="cvlc --play-and-exit"
-
 function _segfault_detected () {
     echo "WARNING: segfault captured!"
     while true; do
@@ -27,12 +24,12 @@ fi
 cd impl
 
 if [[ $1 == sign ]]; then
-    _openid="$_openid" _audio_player="$_audio_player" ./daemon-signin.fish
+    _openid="$_openid" ./daemon-signin.fish
     [[ $? == 127 ]] && exit 127
     _segfault_detected
 fi
 if [[ $1 == ans ]]; then
-    _openid="$_openid" _audio_player="$_audio_player" ./daemon-answer.fish
+    _openid="$_openid" ./daemon-answer.fish
     [[ $? == 127 ]] && exit 127
     _segfault_detected
 fi

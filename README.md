@@ -1,23 +1,37 @@
 # micro-teaching-assistant-fucker
 
+微助教工具箱
+
 自动检测是否有老师在微助教发布了新的题 并在特殊情况下及时提醒答题
 
-自动检测是否有老师在微助教发布了新的签到 并在特殊情况下及时提醒签到
+自动检测是否有老师在微助教发布了新的签到 并延时自动签到
 
 ## Hard PreRequirements
 
-Non-Windows OS. curl. bash. fish. awk. One mp3 player available on command line.
+Non-Windows OS. curl. bash. fish. awk. grep. One mp3 player available on command line.
+
+## Configuration
+
+编辑config.fish，设置自动签到的经纬度和延时，设置你想使用的mp3播放器然后保存。
 
 ## Usage
 
-打开微信 微助教 学生 答题/签到，在页面加载完成之前迅速按下右上角...，然后复制这个页面的url。
+- 获得openid
 
-运行你想要的daemon.sh 输入openid或含有openid的完整URL 它会每5秒检查一次并判断是否需要答题/签到。你也可以将openid直接写进daemon.sh。
+打开微信 微助教 学生 答题/签到，在*页面加载完成之前*迅速按下右上角的`...`，然后复制链接(copy url)。
+
+- 自动签到
+
+运行`./daemon.sh sign`并填写openid(或含有openid的url)，它会监视你的所有课堂并自动签到。注意，如果有多个课堂同时发起签到请求，其行为是未定义的。
+
+- 监视答题
+
+运行`./daemon.sh ans`(或含有openid的url)，它会监视你的所有课堂是否有答题。注意，如果有多个课堂同时发起答题，其行为是未定义的。
+
+## Tips
 
 daemon.sh使用了notify-send，其他用户请根据自己的情况选择修改或删除气泡提醒。
 
 daemonx.sh默认使用mpg123/cvlc来播放mp3，其他播放器用户请根据自己情况进行修改。**请将电脑声音调大**。
 
-## Tips
-
-根据经验，url一般会在约1080次请求后失效。这意味着，如果你只开一个脚本，5秒请求一次，它可以使用约90分钟。同时使用签到和答题监测时，时间会减半。
+根据经验，url一般会在约1080次请求后失效。这意味着，如果你只开一个脚本，5秒请求一次，它可以自动运行约90分钟。
