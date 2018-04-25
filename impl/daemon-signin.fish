@@ -1,5 +1,7 @@
 #!/usr/bin/fish
 
+_url="https://www.teachermate.com.cn/wechat/wechat/guide/signin?openid=$_openid"
+
 set tmpfl (mktemp)
 rm $tmpfl
 

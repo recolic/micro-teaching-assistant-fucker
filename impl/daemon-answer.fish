@@ -1,6 +1,8 @@
 #!/usr/bin/fish
 #Usage: fill _openid with openid from url of the page "学生->答题".
 
+_url="https://www.teachermate.com.cn/wechat/wechat/guide/answer?openid=$_openid"
+
 function _check_and_warn
     if _all_answered
         echo "LOG> exit because all question answered."
