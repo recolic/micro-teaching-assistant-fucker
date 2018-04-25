@@ -22,11 +22,11 @@ Non-Windows OS. curl. bash. fish. awk. grep. One mp3 player available on command
 
 - 自动签到
 
-运行`./daemon.sh sign`并填写openid(或含有openid的url)，它会监视你的所有课堂并自动签到。注意，如果有多个课堂同时发起签到请求，其行为是未定义的。
+运行`./daemon.sh sign`并填写openid(或含有openid的url)，它会监视你的所有课堂并自动签到。注意，如果有多个课堂同时发起签到请求，其行为是未定义的。如果自动签到失败，它会使用语音提示要求手动干预。
 
 - 监视答题
 
-运行`./daemon.sh ans`并填写openid(或含有openid的url)，它会监视你的所有课堂是否有答题。注意，如果有多个课堂同时发起答题，其行为是未定义的。
+运行`./daemon.sh ans`并填写openid(或含有openid的url)，它会监视你的所有课堂是否有答题并使用语音发出提醒。注意，如果有多个课堂同时发起答题，其行为是未定义的。
 
 ## Tips
 
