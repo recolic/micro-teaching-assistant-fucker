@@ -44,7 +44,7 @@ while true
         do_signin
         continue
     end
-    if grep "<p class='success-tip'>暂无签到开启</p>" $tmpfl
+    if grep "<p class='success-tip'>暂无开启的签到" $tmpfl
         continue
     end
     if grep '你已签过到了' $tmpfl
