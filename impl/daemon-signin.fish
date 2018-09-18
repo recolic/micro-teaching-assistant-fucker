@@ -6,8 +6,8 @@ set _url "https://www.teachermate.com.cn/wechat/wechat/guide/signin?openid=$_ope
 source ../config.fish
 
 # Where should I signin ?
-test -z $_NorthLatitude; and set _NorthLatitude "30.509604"
-test -z $_EastLongitude; and set _EastLongitude "114.41374"
+test -z $_NorthLatitude; and echo "Warning: signin location _NorthLatitude not set. Rejecting dangerous operation..."; and exit 4
+test -z $_EastLongitude; and echo "Warning: signin location _EastLongitude not set. Rejecting dangerous operation..."; and exit 4
 
 # How many seconds should I delay before autosign ?
 test -z $_autosign_delay; and set _autosign_delay "10"
@@ -19,6 +19,22 @@ rm $tmpfl
 
 set signed_in false
 
+function on_signin_success
+    eval $_audio_player autosignin-success.mp3
+    eval $_notify "'Teachermate signin'" "'Signin success'"
+end
+
+function on_signin_fail
+    # will retry automatically
+    eval $_audio_player signin.mp3
+    eval $_notify "'Teachermate signin'" "'Signin failed'"
+end
+
+function on_badid
+    eval $_audio_player badid.mp3
+    eval $_notify "'Teachermate signin'" "'OpenID expired. Please restart the program with new openID'"
+end
+
 function do_signin
     if test $signed_in = true
         return
@@ -29,7 +45,7 @@ function do_signin
     set _wx_csrf (grep 'Set-Cookie' $cookiefl | sed 's/^.*wx_csrf_cookie=//' | sed 's/;.*$//')
     curl "https://www.teachermate.com.cn/wechat-api/v1/class-attendance/student-sign-in" --data "openid=$_openid&course_id=$_courseid&lon=$_EastLongitude&lat=$_NorthLatitude&wx_csrf_name=$_wx_csrf" > $cookiefl
     grep -F 'repeat sign in' $cookiefl; and set signed_in true; and return
-    grep -F '":["OK",' $cookiefl; and set signed_in true; and eval $_audio_player autosignin-success.mp3; or eval $_audio_player signin.mp3
+    grep -F '":["OK",' $cookiefl; and set signed_in true; and on_signin_success; or on_signin_fail
 end
 
 while true
@@ -37,7 +53,7 @@ while true
     date
     curl -L "$_url" -v 2>$cookiefl > $tmpfl
     if grep '{"data":\[\],"msg":"unauthorized"}' $tmpfl
-        eval $_audio_player badid.mp3
+        on_signin_fail
         continue
     end
     if grep '签到中...' $tmpfl

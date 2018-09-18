@@ -12,19 +12,20 @@ function _check_and_warn
         return 0
     end
     eval $_audio_player answer.mp3 > /dev/null 2>&1
-    notify-send "Warning: Question opened!" "Question opened!"
+    echo "test"
+    eval $_notify "'Teachermate answer'" "'Question opened!'"
     echo "LOG> Detected!"
 end
 
 function _on_unknown_error
     eval $_audio_player error.mp3 > /dev/null 2>&1
-    notify-send "Warning: Error occurred!" "Error occurred!"
+    eval $_notify "'Teachermate answer'" "'Error occurred!'"
     echo "LOG> Error occurred!"
 end
 
 function _on_openid_error
     eval $_audio_player badid.mp3 > /dev/null 2>&1
-    notify-send "Warning: Invalid openid!" "Error: Invalid openid."
+    eval $_notify "'Teachermate answer'" "'Error: Invalid openid.'"
     echo "LOG> Invalid openid."
 end
 

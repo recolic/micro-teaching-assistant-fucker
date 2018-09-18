@@ -3,7 +3,7 @@
 [[ $1 == '' ]] && echo "usage: $0 sign/ans/all" && exit 1
 
 [[ $_openid == "" ]] && echo 'Give openid or url please:' && read _openid
-_openid=$(echo "$_openid" | sed 's/^.*openid=//g')
+_openid=$(echo "$_openid" | sed 's/^.*openid=//g' | sed 's/&.*$//g')
 echo "Set openid to $_openid"
 
 function _segfault_detected () {
