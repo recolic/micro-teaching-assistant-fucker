@@ -3,9 +3,12 @@ set _audio_player "mpg123"
 #set _audio_player "cvlc --play-and-exit"
 
 # Where should I signin ?
+# West V
+set _NorthLatitude "30.511227"
+set _EastLongitude "114.41021"
 # West XII
-set _NorthLatitude "30.508914"
-set _EastLongitude "114.40718"
+#set _NorthLatitude "30.508914"
+#set _EastLongitude "114.40718"
 # South I
 #set _NorthLatitude "30.509595"
 #set _EastLongitude "114.41374"

@@ -20,18 +20,18 @@ rm $tmpfl
 set signed_in false
 
 function on_signin_success
-    eval $_audio_player autosignin-success.mp3
+    eval $_audio_player autosignin-success.mp3 > /dev/null 2>&1
     eval $_notify "'Teachermate signin'" "'Signin success'"
 end
 
 function on_signin_fail
     # will retry automatically
-    eval $_audio_player signin.mp3
+    eval $_audio_player signin.mp3 > /dev/null 2>&1
     eval $_notify "'Teachermate signin'" "'Signin failed'"
 end
 
 function on_badid
-    eval $_audio_player badid.mp3
+    eval $_audio_player badid.mp3 > /dev/null 2>&1
     eval $_notify "'Teachermate signin'" "'OpenID expired. Please restart the program with new openID'"
 end
 
@@ -53,7 +53,7 @@ while true
     date
     curl -L "$_url" -v 2>$cookiefl > $tmpfl
     if grep '{"data":\[\],"msg":"unauthorized"}' $tmpfl
-        on_signin_fail
+        on_badid
         continue
     end
     if grep '签到中...' $tmpfl
