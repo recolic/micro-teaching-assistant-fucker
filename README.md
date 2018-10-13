@@ -18,7 +18,7 @@ Non-Windows OS. curl. bash. fish. awk. grep. One mp3 player available on command
 
 - 获得openid
 
-打开微信 微助教 学生 答题/签到，在*页面加载完成之前*迅速按下右上角的`...`，然后复制链接(copy url)。
+打开微信 微助教 学生，在*页面加载完成之前*迅速按下右上角的`...`，然后复制链接(copy url)。
 
 - 自动签到
 
