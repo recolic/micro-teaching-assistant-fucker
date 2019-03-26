@@ -6,6 +6,10 @@
 
 自动检测是否有老师在微助教发布了新的签到 并延时自动签到
 
+## 在线版
+
+https://tm.recolic.net/
+
 ## Hard PreRequirements
 
 Non-Windows OS. curl. bash. fish. awk. grep. One mp3 player available on command line.
