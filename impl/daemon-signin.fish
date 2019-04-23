@@ -41,11 +41,18 @@ function do_signin
     end
     echo "sleep for $_autosign_delay seconds..."
     sleep $_autosign_delay
-    set _courseid (curl "$_url" -v 2>&1 | grep '^< Location: ' | sed 's/^.*course_id=//')
-    set _wx_csrf (grep 'Set-Cookie' $cookiefl | sed 's/^.*wx_csrf_cookie=//' | sed 's/;.*$//')
-    curl "https://www.teachermate.com.cn/wechat-api/v1/class-attendance/student-sign-in" --data "openid=$_openid&course_id=$_courseid&lon=$_EastLongitude&lat=$_NorthLatitude&wx_csrf_name=$_wx_csrf" > $cookiefl
+    # set _courseid (curl "$_url" -v 2>&1 | grep '^< Location: ' | sed 's/^.*course_id=//')
+    set _courseid (cat "$tmpfl" | grep 'id="course-id' | sed 's/^.*value="//g' | sed 's/" .*$//g')
+    set _signid (cat "$tmpfl" | grep 'id="sign-id' | sed 's/^.*value="//g' | sed 's/" .*$//g')
+    # set _wx_csrf (grep 'Set-Cookie' $cookiefl | sed 's/^.*wx_csrf_cookie=//' | sed 's/;.*$//')
+    set _wx_csrf (cat "$tmpfl" | grep 'id="token-hash' | sed 's/^.*value="//g' | sed 's/" .*$//g')
+    # recolic: they changed `www.teachermate.com.cn` to `v18.teachermate.com.cn` but doesn't provide new certificate... I added -k here. (which indicates that their client (wechat and dingtalk) doesn't check certificate at all)
+    curl -k "https://v18.teachermate.com.cn/wechat-api/v1/class-attendance/student-sign-in" --data "openid=$_openid&courseId=$_courseid&lon=$_EastLongitude&lat=$_NorthLatitude&signId=$_signid&wx_csrf_name=$_wx_csrf" > $cookiefl
     grep -F 'repeat sign in' $cookiefl; and set signed_in true; and return
-    grep -F '":["OK",' $cookiefl; and set signed_in true; and on_signin_success; or on_signin_fail
+    grep -F 'signRank' $cookiefl; and set signed_in true; and on_signin_success; and return
+    # Fail
+    cat $cookiefl
+    on_signin_fail
 end
 
 while true

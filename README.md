@@ -10,6 +10,10 @@
 
 https://tm.recolic.net/
 
+## WARNING
+
+**Update At 2019-04-23: 自动签到API发生了修改，请务必更新你的脚本，否则你可能失去生命。**
+
 ## Hard PreRequirements
 
 Non-Windows OS. curl. bash. fish. awk. grep. One mp3 player available on command line.
