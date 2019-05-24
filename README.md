@@ -14,7 +14,7 @@ https://tm.recolic.net/
 
 **Update At 2019-04-23: 自动签到API发生了修改，请务必更新你的脚本，否则你可能失去生命。**
 
-**Update At 2019-05-21: 自动签到API再次发生了修改，暂时不要使用，正在更新脚本。**
+**Update At 2019-05-21: 自动签到API再次发生了修改，请务必更新你的脚本，否则你可能失去生命。**
 
 ## Hard PreRequirements
 
