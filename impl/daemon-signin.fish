@@ -1,7 +1,9 @@
 #!/usr/bin/fish
 
 test -z $_openid; and echo 'openid is unset.' ; and exit 1
-set _url "https://www.teachermate.com.cn/wechat/wechat/guide/signin?openid=$_openid"
+set _url "https://v18.teachermate.cn/wechat/wechat/guide/signin?openid=$_openid"
+set _resign_url "https://v18.teachermate.cn/api/v1/wechat/re-auth?m=s_signin&code=$_openid&state=$_openid"
+#simply reuse openid for resign
 
 source ../config.fish
 
@@ -59,6 +61,8 @@ while true
     test -f $tmpfl; and sleep $_monitor_interval
     date
     curl -L "$_url" -v 2>$cookiefl > $tmpfl
+    #First sign is not necessary now, but maybe useful later
+    curl -L "$_resign_url" -v 2>$cookiefl > $tmpfl
     if grep '{"data":\[\],"msg":"unauthorized"}' $tmpfl
         on_badid
         continue
