@@ -8,7 +8,9 @@
 
 ## 在线版
 
-https://tm.recolic.net/
+~~https://tm.recolic.org/~~
+
+在线版已关闭，因为未知bug且收入过低，不愿意继续维护。在线系统已开源： https://git.recolic.org/root/tm-clone 以及docker： https://github.com/recolic/teachermate-seller-docker
 
 ## WARNING
 
@@ -33,6 +35,8 @@ Non-Windows OS. curl. bash. fish. awk. grep. One mp3 player available on command
 - 自动签到
 
 运行`./daemon.sh sign`并填写openid(或含有openid的url)，它会监视你的所有课堂并自动签到。注意，如果有多个课堂同时发起签到请求，其行为是未定义的。如果自动签到失败，它会使用语音提示要求手动干预。
+
+对于普通签到和GPS定位签到，它会自动签到成功。对于二维码签到，它会语音提示你手动签到，因为本软件不能自动二维码签到。
 
 - 监视答题
 
