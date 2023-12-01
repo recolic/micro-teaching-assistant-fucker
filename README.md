@@ -10,7 +10,9 @@
 
 ~~https://tm.recolic.org/~~
 
-在线版已关闭，因为未知bug且收入过低，不愿意继续维护。在线系统已开源： https://git.recolic.org/root/tm-clone 以及docker： https://github.com/recolic/teachermate-seller-docker
+在线版已关闭，因为未知bug且收入过低，不愿意继续维护。在线系统已开源： https://git.recolic.net/root/tm-clone 以及docker： https://git.recolic.net/root/teachermate-seller-docker
+
+(github mirror: github.com/recolic)
 
 ## WARNING
 
